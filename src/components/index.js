@@ -1,6 +1,7 @@
 import Avatar, { AvatarAddOn } from './Avatar';
 import Card from './Card';
 import CardHeader from './CardHeader';
+import CustomInput from './CustomInput';
 import ExtendedDropdown from './ExtendedDropdown';
 import FloatGrid from './FloatGrid';
 import IconWithBadge from './IconWithBadge';
@@ -19,6 +20,7 @@ import Progress from './Progress';
 import Sidebar from './Sidebar';
 import SidebarMenu from './SidebarMenu';
 import SidebarTrigger from './SidebarTrigger';
+import StarRating from './StarRating';
 import {
     ThemeClass,
     ThemeProvider,
@@ -106,6 +108,7 @@ export {
     AvatarAddOn,
     Card,
     CardHeader,
+    CustomInput,
     ExtendedDropdown,
     FloatGrid,
     IconWithBadge,
@@ -123,6 +126,7 @@ export {
     Sidebar,
     SidebarMenu,
     SidebarTrigger,
+    StarRating,
     ThemeClass,
     ThemeConsumer,
     ThemeProvider,

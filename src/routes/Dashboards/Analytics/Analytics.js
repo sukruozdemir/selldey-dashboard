@@ -94,10 +94,10 @@ export class Analytics extends React.Component {
 
         return (
             <React.Fragment>
-                <Container fluid={ false }>
+                <Container fluid={ true }>
                     <div className="d-flex mt-3 mb-5">
                         <HeaderMain 
-                            title="Analytics"
+                            title="Analitik"
                             className="mt-0"
                         />
                         <ButtonToolbar className="ml-auto">

@@ -34,7 +34,7 @@ class AppLayout extends React.Component {
         const { children } = this.props;
         
         return (
-            <ThemeProvider initialStyle="light" initialColor="indigo">
+            <ThemeProvider initialStyle="light" initialColor="primary">
                 <Layout sidebarSlim favIcons={ favIcons }>
                     { /* --------- Navbar ----------- */ }
                     <Layout.Navbar>
