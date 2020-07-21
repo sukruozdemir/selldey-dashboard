@@ -51,21 +51,25 @@ const ProjectsSmHeader = (props) => (
             <i className='fa-fw fa fa-bars'></i>
           </Button>
           <UncontrolledTooltip placement='bottom' target='tooltipShowList'>
-            Show List
+            Listeyi Göster
           </UncontrolledTooltip>
-          <Button
-            tag={NavLink}
-            to={`${props.linkGrid}`}
-            color='secondary'
-            outline
-            className='align-self-center'
-            id='tooltipShowGrid'
-          >
-            <i className='fa-fw fa fa-th-large'></i>
-          </Button>
-          <UncontrolledTooltip placement='bottom' target='tooltipShowGrid'>
-            Show Grid
-          </UncontrolledTooltip>
+          {props.linkGrid && (
+            <>
+              <Button
+                tag={NavLink}
+                to={`${props.linkGrid}`}
+                color='secondary'
+                outline
+                className='align-self-center'
+                id='tooltipShowGrid'
+              >
+                <i className='fa-fw fa fa-th-large'></i>
+              </Button>
+              <UncontrolledTooltip placement='bottom' target='tooltipShowGrid'>
+                Show Grid
+              </UncontrolledTooltip>
+            </>
+          )}
           {props.btnShowKanban && (
             <React.Fragment>
               <Button
@@ -96,7 +100,7 @@ const ProjectsSmHeader = (props) => (
             <i className='fa-fw fa fa-plus'></i>
           </Button>
           <UncontrolledTooltip placement='bottom' target='tooltipAddNew'>
-            Add New
+            Yeni Ekle
           </UncontrolledTooltip>
         </ButtonGroup>
       </ButtonToolbar>
@@ -116,7 +120,6 @@ ProjectsSmHeader.propTypes = {
 ProjectsSmHeader.defaultProps = {
   subTitle: "Folder",
   linkList: "#",
-  linkGrid: "#",
   btnShowKanban: false,
   linkKanban: "/apps/tasks-kanban",
 };

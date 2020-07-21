@@ -10,6 +10,14 @@ export const SidebarMiddleNav = () => (
     >
       <SidebarMenu.Item title='Analitik' to='/dashboards/analytics' exact />
     </SidebarMenu.Item>
+
+    <SidebarMenu.Item
+      title='Siparişler'
+      icon={<i className='fa fa-fw fa-shopping-bag'></i>}
+    >
+      <SidebarMenu.Item title='Sipariş Listesi' to='/dashboard/orders' />
+    </SidebarMenu.Item>
+
     <SidebarMenu.Item
       title='Ürünler'
       icon={<i className='fa fa-fw fa-clone'></i>}

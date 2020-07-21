@@ -5,7 +5,6 @@ import {
   ButtonGroup,
   Card,
   CardBody,
-  CardFooter,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
