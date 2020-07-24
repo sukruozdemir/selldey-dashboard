@@ -4,6 +4,9 @@ import CardHeader from './CardHeader';
 import CustomInput from './CustomInput';
 import ExtendedDropdown from './ExtendedDropdown';
 import FloatGrid from './FloatGrid';
+import FormInput from './FormInput';
+import FormError from './FormError';
+import FormSuccess from './FormSuccess';
 import IconWithBadge from './IconWithBadge';
 import InputGroupAddon from './InputGroupAddon';
 import Layout, {
@@ -28,6 +31,7 @@ import {
     ThemeSelector,
     ThemeConsumer,
 } from './Theme';
+import UncontrolledModal from './UncontrolledModal';
 import UncontrolledPopover from './UncontrolledPopover';
 
 export {
@@ -112,6 +116,9 @@ export {
     CustomInput,
     ExtendedDropdown,
     FloatGrid,
+    FormInput,
+    FormError,
+    FormSuccess,
     IconWithBadge,
     InputGroupAddon,
     Layout,
@@ -133,5 +140,6 @@ export {
     ThemeConsumer,
     ThemeProvider,
     ThemeSelector,
+    UncontrolledModal,
     UncontrolledPopover,
 };

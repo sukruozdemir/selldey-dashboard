@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 
 import { Container, Row, Col, PageLoader } from "./../../components";
 import { HeaderMain } from "../components/HeaderMain";
@@ -10,10 +11,14 @@ import ProductsGrid from "./ProductsGrid";
 import { ProductsLeftNav } from "./../components/Products/ProductsLeftNav";
 import { ProjectsSmHeader } from "./../components/Projects/ProjectsSmHeader";
 
+import { FetchContext } from "../../context/FetchContext";
 import useProducts from "../../hooks/useProducts";
 
 const Products = (props) => {
-  const { data } = useProducts();
+  const fetchContext = useContext(FetchContext);
+  const history = useHistory();
+
+  const { data } = useProducts(fetchContext.authAxios);
 
   return (
     <>
@@ -32,6 +37,9 @@ const Products = (props) => {
               }
               linkList='/dashboard/products/list'
               linkGrid='/dashboard/products/grid'
+              onNewButtonClick={() => {
+                history.push("/dashboard/new/product");
+              }}
             />
 
             {data ? (

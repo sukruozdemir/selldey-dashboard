@@ -22,6 +22,7 @@ export const SidebarMiddleNav = () => (
       title='Ürünler'
       icon={<i className='fa fa-fw fa-clone'></i>}
     >
+      <SidebarMenu.Item title='Yeni Ürün Ekle' to='/dashboard/new/product' />
       <SidebarMenu.Item title='Ürün Listesi' to='/dashboard/products/list' />
       <SidebarMenu.Item title='Ürün Grid Liste' to='/dashboard/products/grid' />
     </SidebarMenu.Item>

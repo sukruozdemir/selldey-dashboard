@@ -1,9 +1,8 @@
 import useSWR from "swr";
 
-import { fetcher } from "../libs/fetcher";
-
-function useProducts() {
-  return useSWR("http://localhost:5001/v1/products", fetcher);
+function useProducts(axios) {
+  const fetcher = (url) => axios.get(url).then((res) => res.data);
+  return useSWR("/products", fetcher);
 }
 
 export default useProducts;

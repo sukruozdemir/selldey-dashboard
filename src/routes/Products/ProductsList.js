@@ -20,7 +20,7 @@ const ProductsList = ({ data }) => (
         </thead>
         <tbody>
           {data.map((productItem, index) => {
-            return <TrTableProductsList id={index} {...productItem} />;
+            return <TrTableProductsList key={index} id={index} {...productItem} />;
           })}
         </tbody>
       </Table>

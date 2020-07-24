@@ -96,6 +96,7 @@ const ProjectsSmHeader = (props) => (
             color='primary'
             className='align-self-center'
             id='tooltipAddNew'
+            onClick={props.onNewButtonClick || null}
           >
             <i className='fa-fw fa fa-plus'></i>
           </Button>

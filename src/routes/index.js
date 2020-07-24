@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from "react-router";
 // ----------- Page Imports ---------------
 // import Analytics from "./Dashboards/Analytics";
 
+import NewProduct from "./NewProduct";
 import Products from "./Products";
 import Orders from "./Orders";
 // import OrderDetails from "./OrderDetails";
@@ -30,8 +31,9 @@ export const RoutedContent = () => {
       <Redirect from='/' to='/dashboard/orders' exact />
 
       <Route component={Products} path='/dashboard/products/:type' />
+      <Route component={NewProduct} path='/dashboard/new/product' />
+
       <Route component={Orders} path='/dashboard/orders' exact />
-      {/* <Route component={OrderDetails} path='/dashboard/orders/:orderNo' /> */}
       <Route path='/dashboard/orders/:orderNo'>
         <React.Suspense fallback={<PageLoader />}>
           <OrderDetails />

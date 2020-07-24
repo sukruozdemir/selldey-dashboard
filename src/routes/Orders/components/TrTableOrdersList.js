@@ -77,7 +77,6 @@ const TrTableOrdersList = (props) => (
         <UncontrolledButtonDropdown>
           <DropdownToggle
             color='link'
-            link
             size='sm'
             className='pl-0 mb-3 text-decoration-none'
           >
