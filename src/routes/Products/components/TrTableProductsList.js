@@ -3,7 +3,6 @@ import faker from "faker/locale/tr";
 import PropTypes from "prop-types";
 
 import {
-  Badge,
   Media,
   Avatar,
   UncontrolledButtonDropdown,
@@ -11,13 +10,13 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "./../../../components";
-
+import ActivePassiveBadge from "../../components/ActivePassiveBadge";
 import { randomAvatar } from "./../../../utilities";
 
-const TrTableProductsList = (props) => {
+const TrTableProductsList = ({ id, title, description, site, active }) => {
   return (
     <React.Fragment>
-      <tr className='py-3'>
+      <tr key={id} className='py-3'>
         <td>
           <Media>
             <Media left className='d-flex align-self-center mr-3'>
@@ -29,16 +28,16 @@ const TrTableProductsList = (props) => {
             </Media>
             <Media body>
               <a className='mt-0 d-flex text-decoration-none' href='#!'>
-                {faker.commerce.productName()}
+                {title}
               </a>
-              <span>{faker.internet.url()}</span>
+              <span>{site}</span>
             </Media>
           </Media>
         </td>
-        <td className='align-middle'>{faker.commerce.price()} ₺</td>
+        <td className='align-middle'>{description}</td>
         <td className='align-middle'>
           <h5>
-            <Badge color='red'>Pasif</Badge>
+            <ActivePassiveBadge active={active} />
           </h5>
         </td>
         <td className='align-middle text-right'>
