@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { HeaderMain } from "../components/HeaderMain";
-import { ProductForm } from "../components/Products/ProductForm";
+import { NewProductForm } from "../components/Products/NewProductForm";
 import { Container, Row, Col, Card, CardBody } from "../../components";
 
 import { FetchContext } from "../../context/FetchContext";
@@ -16,7 +16,7 @@ function NewProduct() {
         <Col lg={12}>
           <Card>
             <CardBody>
-              <ProductForm
+              <NewProductForm
                 onSubmit={async (values) => {
                   try {
                     await fetchContext.authAxios.post("/products", values);

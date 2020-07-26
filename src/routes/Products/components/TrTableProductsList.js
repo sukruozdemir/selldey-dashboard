@@ -1,8 +1,10 @@
-import React from "react";
-import faker from "faker/locale/tr";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 
 import {
+  Button,
   Media,
   Avatar,
   UncontrolledButtonDropdown,
@@ -13,7 +15,84 @@ import {
 import ActivePassiveBadge from "../../components/ActivePassiveBadge";
 import { randomAvatar } from "./../../../utilities";
 
+import { FetchContext } from "../../../context/FetchContext";
+import { mutate } from "swr";
+
+const ContentDelete = ({ closeToast, title, onDelete }) => (
+  <Media>
+    <Media middle left className='mr-3'>
+      <i className='fa fa-fw fa-2x fa-close'></i>
+    </Media>
+    <Media body>
+      <Media heading tag='h6'>
+        Dikkat!
+      </Media>
+      <p>"{title}" adlı ürünü silmek üzeresiniz. Emin misiniz?</p>
+      <div className='d-flex mt-2'>
+        <Button color='danger' onClick={onDelete}>
+          <i className='fa fa-trash mr-2' /> Evet, Sil
+        </Button>
+        <Button color='link' onClick={closeToast} className='ml-2 text-danger'>
+          İptal
+        </Button>
+      </div>
+    </Media>
+  </Media>
+);
+
+const ContentSuccess = ({ title }) => (
+  <Media>
+    <Media middle left className='mr-3'>
+      <i className='fa fa-fw fa-2x fa-check'></i>
+    </Media>
+    <Media body>
+      <Media heading tag='h6'>
+        Başarılı!
+      </Media>
+      <p>"{title}" adlı ürün başarıyla silindi!</p>
+    </Media>
+  </Media>
+);
+
+const ContentError = ({ text }) => (
+  <Media>
+    <Media middle left className='mr-3'>
+      <i className='fa fa-fw fa-2x fa-close'></i>
+    </Media>
+    <Media body>
+      <Media heading tag='h6'>
+        Hata!
+      </Media>
+      <p>Ürün bir hata oluştu</p>
+      <p>{text}</p>
+    </Media>
+  </Media>
+);
+
 const TrTableProductsList = ({ id, title, description, site, active }) => {
+  const fetchContext = useContext(FetchContext);
+
+  const onDelete = () => {
+    toast.dismiss();
+
+    fetchContext.authAxios
+      .delete(`/products/${id}`)
+      .then(() => {
+        toast.success(<ContentSuccess title={title} />, { delay: 2500 });
+        mutate("/products");
+      })
+      .catch((error) => {
+        toast.error(<ContentError text={error.response.data.message} />);
+      });
+  };
+
+  const notifyDelete = () => {
+    toast.dismiss();
+    toast.error(<ContentDelete title={title} onDelete={onDelete} />, {
+      closeOnClick: false,
+    });
+  };
+
   return (
     <React.Fragment>
       <tr key={id} className='py-3'>
@@ -48,11 +127,13 @@ const TrTableProductsList = ({ id, title, description, site, active }) => {
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem>
-                <i className='fa fa-fw fa-pencil mr-2'></i>
-                Düzenle
+                <Link to={`/dashboard/details/product/${id}`}>
+                  <i className='fa fa-fw fa-folder-open mr-2'></i>
+                  Görüntüle
+                </Link>
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem>
+              <DropdownItem onClick={notifyDelete}>
                 <i className='fa fa-fw fa-trash mr-2'></i>
                 Sil
               </DropdownItem>

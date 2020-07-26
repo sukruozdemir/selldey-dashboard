@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import {ToastContainer} from "react-toastify"
 
 import { AuthProvider, AuthContext } from "./context/AuthContext";
 import { FetchProvider } from "./context/FetchContext";
@@ -16,6 +17,13 @@ function App() {
         <FetchProvider>
           <AppLayout>
             <RoutedContent />
+
+            <ToastContainer
+              position='bottom-center'
+              autoClose={50000}
+              draggable={false}
+              hideProgressBar={true}
+            />
           </AppLayout>
         </FetchProvider>
       </AuthProvider>

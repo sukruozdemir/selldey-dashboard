@@ -24,6 +24,7 @@ import { PageLoader } from "../components";
 // ----------- Async Page Imports ---------------
 
 const OrderDetails = React.lazy(() => import("./OrderDetails"));
+const ProductDetails = React.lazy(() => import("./ProductDetails"));
 
 export const RoutedContent = () => {
   return (
@@ -32,6 +33,12 @@ export const RoutedContent = () => {
 
       <Route component={Products} path='/dashboard/products/:type' />
       <Route component={NewProduct} path='/dashboard/new/product' />
+
+      <Route path='/dashboard/details/product/:productId'>
+        <React.Suspense fallback={<PageLoader />}>
+          <ProductDetails />
+        </React.Suspense>
+      </Route>
 
       <Route component={Orders} path='/dashboard/orders' exact />
       <Route path='/dashboard/orders/:orderNo'>

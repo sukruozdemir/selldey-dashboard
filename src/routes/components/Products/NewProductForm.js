@@ -12,6 +12,7 @@ import {
   FormSuccess,
   FormError,
 } from "../../../components";
+import { mutate } from "swr";
 
 const ProductSchema = Yup.object().shape({
   title: Yup.string().required("Ürün adı girilmesi zorunludur"),
@@ -20,7 +21,7 @@ const ProductSchema = Yup.object().shape({
   active: Yup.boolean().default(true),
 });
 
-function ProductForm({ onSubmit }) {
+function NewProductForm({ onSubmit }) {
   const history = useHistory();
   const [active, setActive] = useState(true);
   const [successMessage, setSuccessMessage] = useState();
@@ -41,6 +42,7 @@ function ProductForm({ onSubmit }) {
           setErrorMessage(null);
 
           setTimeout(() => {
+            mutate("/products");
             history.push("/dashboard/products/list");
           }, 1000);
         } else {
@@ -123,4 +125,4 @@ function ProductForm({ onSubmit }) {
   );
 }
 
-export { ProductForm };
+export { NewProductForm };
