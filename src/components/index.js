@@ -2,6 +2,7 @@ import Avatar, { AvatarAddOn } from './Avatar';
 import Card from './Card';
 import CardHeader from './CardHeader';
 import CustomInput from './CustomInput';
+import EmptyLayout from './EmptyLayout';
 import ExtendedDropdown from './ExtendedDropdown';
 import FloatGrid from './FloatGrid';
 import FormInput from './FormInput';
@@ -115,6 +116,7 @@ export {
     Card,
     CardHeader,
     CustomInput,
+    EmptyLayout,
     ExtendedDropdown,
     FloatGrid,
     FormInput,
