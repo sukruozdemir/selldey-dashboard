@@ -7,7 +7,7 @@ import {
   Card,
   CardFooter,
   Table,
-} from "./../../components";
+} from "./../../../components";
 
 import { TrTableOrdersList } from "./components/TrTableOrdersList";
 

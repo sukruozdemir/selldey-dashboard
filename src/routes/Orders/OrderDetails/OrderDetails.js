@@ -15,8 +15,8 @@ import {
   Input,
   Label,
   Row,
-} from "../../components";
-import { HeaderMain } from "../components/HeaderMain";
+} from "../../../components";
+import { HeaderMain } from "../../components/HeaderMain";
 
 function OrderDetails() {
   const params = useParams();

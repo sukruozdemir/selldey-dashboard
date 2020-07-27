@@ -8,9 +8,9 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from "./../../../components";
+} from "./../../../../components";
 
-import { randomArray } from "./../../../utilities";
+import { randomArray } from "./../../../../utilities";
 
 const prioStatus = [
   <React.Fragment key='1'>

@@ -2,17 +2,17 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 
-import { Container, Row, Col, PageLoader } from "./../../components";
-import { HeaderMain } from "../components/HeaderMain";
+import { Container, Row, Col, PageLoader } from "./../../../components";
+import { HeaderMain } from "../../components/HeaderMain";
 
 import ProductsList from "./ProductsList";
 import ProductsGrid from "./ProductsGrid";
 
-import { ProductsLeftNav } from "./../components/Products/ProductsLeftNav";
-import { ProjectsSmHeader } from "./../components/Projects/ProjectsSmHeader";
+import { ProductsLeftNav } from "./../../components/Products/ProductsLeftNav";
+import { ProjectsSmHeader } from "./../../components/Projects/ProjectsSmHeader";
 
-import { FetchContext } from "../../context/FetchContext";
-import useProducts from "../../hooks/useProducts";
+import { FetchContext } from "../../../context/FetchContext";
+import useProducts from "../../../hooks/useProducts";
 
 const Products = (props) => {
   const fetchContext = useContext(FetchContext);

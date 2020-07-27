@@ -1,8 +1,8 @@
 import React from "react";
 
-import { CardColumns } from "./../../components";
-import { ProductsCardGrid } from "./../components/Products/ProductsCardGrid";
-import { Paginations } from "./../components/Paginations";
+import { CardColumns } from "./../../../components";
+import { ProductsCardGrid } from "./../../components/Products/ProductsCardGrid";
+import { Paginations } from "./../../components/Paginations";
 
 const ProductsGrid = () => (
   <React.Fragment>

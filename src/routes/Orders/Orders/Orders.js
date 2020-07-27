@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Container, Row, Col } from "./../../components";
-import { HeaderMain } from "./../components/HeaderMain";
+import { Container, Row, Col } from "./../../../components";
+import { HeaderMain } from "./../../components/HeaderMain";
 
 import OrdersList from "./OrdersList";
 // import { ProjectsLeftNav } from "./../components/Projects/ProjectsLeftNav";
-import { ProjectsSmHeader } from "./../components/Projects/ProjectsSmHeader";
+import { ProjectsSmHeader } from "./../../components/Projects/ProjectsSmHeader";
 
 const Orders = (props) => (
   <React.Fragment>

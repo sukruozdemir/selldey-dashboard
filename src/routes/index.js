@@ -4,10 +4,11 @@ import { Route, Switch, Redirect } from "react-router";
 // ----------- Page Imports ---------------
 // import Analytics from "./Dashboards/Analytics";
 
-import NewProduct from "./NewProduct";
-import Products from "./Products";
-import Orders from "./Orders";
-// import OrderDetails from "./OrderDetails";
+// import NewProduct from "./Products/NewProduct";
+import Products from "./Products/Products";
+// import Orders from "./Orders/Orders";
+// import OrderDetails from "./Orders/OrderDetails";
+// import NewOrder from "./Orders/NewOrder";
 
 import NavbarOnly from "./Layouts/NavbarOnly";
 import SidebarWithNavbar from "./Layouts/SidebarWithNavbar";
@@ -23,15 +24,53 @@ import { PageLoader } from "../components";
 
 // ----------- Async Page Imports ---------------
 
-const OrderDetails = React.lazy(() => import("./OrderDetails"));
-const ProductDetails = React.lazy(() => import("./ProductDetails"));
+// const OrderDetails = React.lazy(() => import("./OrderDetails"));
+// const ProductDetails = React.lazy(() => import("./ProductDetails"));
+
+const NewOrder = React.lazy(() => import("./Orders/NewOrder"));
+const NewProduct = React.lazy(() => import("./Products/NewProduct"));
+const Orders = React.lazy(() => import("./Orders/Orders"));
+// const Products = React.lazy(() => import("./Products/Products"));
+const ProductDetails = React.lazy(() => import("./Products/ProductDetails"));
 
 export const RoutedContent = () => {
   return (
     <Switch>
       <Redirect from='/' to='/dashboard/orders' exact />
 
+      <Route path='/dashboard/new/order'>
+        <React.Suspense fallback={<PageLoader />}>
+          <NewOrder />
+        </React.Suspense>
+      </Route>
+
+      <Route path='/dashboard/new/product'>
+        <React.Suspense fallback={<PageLoader />}>
+          <NewProduct />
+        </React.Suspense>
+      </Route>
+
+      <Route path='/dashboard/orders'>
+        <React.Suspense fallback={<PageLoader />}>
+          <Orders />
+        </React.Suspense>
+      </Route>
+
+      <Route path='/dashboard/details/product/:productId'>
+        <React.Suspense fallback={<PageLoader />}>
+          <ProductDetails />
+        </React.Suspense>
+      </Route>
+
       <Route component={Products} path='/dashboard/products/:type' />
+
+      {/*       <Route path='/dashboard/products/:type'>
+        <React.Suspense fallback={<PageLoader />}>
+          <Products />
+        </React.Suspense>
+      </Route> */}
+
+      {/*       <Route component={Products} path='/dashboard/products/:type' />
       <Route component={NewProduct} path='/dashboard/new/product' />
 
       <Route path='/dashboard/details/product/:productId'>
@@ -45,7 +84,7 @@ export const RoutedContent = () => {
         <React.Suspense fallback={<PageLoader />}>
           <OrderDetails />
         </React.Suspense>
-      </Route>
+      </Route> */}
     </Switch>
   );
 };

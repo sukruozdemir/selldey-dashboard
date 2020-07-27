@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Card, CardFooter, Table } from "./../../components";
+import { Card, CardFooter, Table } from "./../../../components";
 
 import { TrTableProductsList } from "./components/TrTableProductsList";
-import { Paginations } from "../components/Paginations";
+import { Paginations } from "../../components/Paginations";
 
 const ProductsList = ({ data }) => (
   <Card className='mb-3'>

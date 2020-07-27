@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 
-import { HeaderMain } from "../components/HeaderMain";
-import { ProductDetailsForm } from "../components/Products/ProductDetailsForm";
+import { HeaderMain } from "../../components/HeaderMain";
+import { ProductDetailsForm } from "../../components/Products/ProductDetailsForm";
 import {
   Container,
   Row,
@@ -10,10 +10,10 @@ import {
   Card,
   CardBody,
   PageLoader,
-} from "../../components";
+} from "../../../components";
 
-import { FetchContext } from "../../context/FetchContext";
-import useProduct from "../../hooks/useProduct";
+import { FetchContext } from "../../../context/FetchContext";
+import useProduct from "../../../hooks/useProduct";
 
 function ProductDetails() {
   const params = useParams();

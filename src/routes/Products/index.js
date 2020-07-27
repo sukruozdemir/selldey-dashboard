@@ -1,3 +1,5 @@
+import NewProduct from "./NewProduct";
+import ProductDetails from "./ProductDetails";
 import Products from "./Products";
 
-export default Products;
+export { NewProduct, ProductDetails, Products };

@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 
-import { HeaderMain } from "../components/HeaderMain";
-import { NewProductForm } from "../components/Products/NewProductForm";
-import { Container, Row, Col, Card, CardBody } from "../../components";
+import { HeaderMain } from "../../components/HeaderMain";
+import { NewProductForm } from "../../components/Products/NewProductForm";
+import { Container, Row, Col, Card, CardBody } from "../../../components";
 
-import { FetchContext } from "../../context/FetchContext";
+import { FetchContext } from "../../../context/FetchContext";
 
 function NewProduct() {
   const fetchContext = useContext(FetchContext);

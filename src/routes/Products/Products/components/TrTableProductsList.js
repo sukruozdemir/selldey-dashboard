@@ -11,11 +11,11 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from "./../../../components";
-import ActivePassiveBadge from "../../components/ActivePassiveBadge";
-import { randomAvatar } from "./../../../utilities";
+} from "./../../../../components";
+import ActivePassiveBadge from "../../../components/ActivePassiveBadge";
+import { randomAvatar } from "./../../../../utilities";
 
-import { FetchContext } from "../../../context/FetchContext";
+import { FetchContext } from "../../../../context/FetchContext";
 import { mutate } from "swr";
 
 const ContentDelete = ({ closeToast, title, onDelete }) => (

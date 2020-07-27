@@ -7,6 +7,7 @@ import FloatGrid from './FloatGrid';
 import FormInput from './FormInput';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
+import FormRadioButton from "./FormRadioButton";
 import IconWithBadge from './IconWithBadge';
 import InputGroupAddon from './InputGroupAddon';
 import Layout, {
@@ -119,6 +120,7 @@ export {
     FormInput,
     FormError,
     FormSuccess,
+    FormRadioButton,
     IconWithBadge,
     InputGroupAddon,
     Layout,
