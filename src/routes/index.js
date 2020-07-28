@@ -1,14 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router";
 
 // ----------- Page Imports ---------------
-// import Analytics from "./Dashboards/Analytics";
+import Login from "./Login";
+import Error404 from "./Error404";
 
-// import NewProduct from "./Products/NewProduct";
-import Products from "./Products/Products";
-// import Orders from "./Orders/Orders";
-// import OrderDetails from "./Orders/OrderDetails";
-// import NewOrder from "./Orders/NewOrder";
+// ----------- Async Page Imports ---------------
 
 import NavbarOnly from "./Layouts/NavbarOnly";
 import SidebarWithNavbar from "./Layouts/SidebarWithNavbar";
@@ -22,70 +19,53 @@ import { SidebarASidebar } from "./../layout/components/SidebarASidebar";
 
 import { PageLoader } from "../components";
 
-// ----------- Async Page Imports ---------------
+const UnauthenticatedRoutes = () => (
+  <Switch>
+    <Redirect from='/' to='login' exact />
+    <Route path='/login' component={Login} />
+    <Route path='*' component={Error404} />
+  </Switch>
+);
 
-// const OrderDetails = React.lazy(() => import("./OrderDetails"));
-// const ProductDetails = React.lazy(() => import("./ProductDetails"));
+/* const AuthenticatedRoute = ({ children, ...rest }) => {
+  const auth = useContext(AuthContext);
+  return (
+    <Route
+      {...rest}
+      render={() =>
+        auth.isAuthenticated() ? (
+          <AppShell>{children}</AppShell>
+        ) : (
+          <Redirect to='/' />
+        )
+      }
+    ></Route>
+  );
+};
 
-const NewOrder = React.lazy(() => import("./Orders/NewOrder"));
-const NewProduct = React.lazy(() => import("./Products/NewProduct"));
-const Orders = React.lazy(() => import("./Orders/Orders"));
-// const Products = React.lazy(() => import("./Products/Products"));
-const ProductDetails = React.lazy(() => import("./Products/ProductDetails"));
+const AdminRoute = ({ children, ...rest }) => {
+  const auth = useContext(AuthContext);
+  return (
+    <Route
+      {...rest}
+      render={() =>
+        auth.isAuthenticated() && auth.isAdmin() ? (
+          <AppShell>{children}</AppShell>
+        ) : (
+          <Redirect to='/' />
+        )
+      }
+    ></Route>
+  );
+}; */
 
 export const RoutedContent = () => {
   return (
-    <Switch>
-      <Redirect from='/' to='/dashboard/orders' exact />
-
-      <Route path='/dashboard/new/order'>
-        <React.Suspense fallback={<PageLoader />}>
-          <NewOrder />
-        </React.Suspense>
-      </Route>
-
-      <Route path='/dashboard/new/product'>
-        <React.Suspense fallback={<PageLoader />}>
-          <NewProduct />
-        </React.Suspense>
-      </Route>
-
-      <Route path='/dashboard/orders'>
-        <React.Suspense fallback={<PageLoader />}>
-          <Orders />
-        </React.Suspense>
-      </Route>
-
-      <Route path='/dashboard/details/product/:productId'>
-        <React.Suspense fallback={<PageLoader />}>
-          <ProductDetails />
-        </React.Suspense>
-      </Route>
-
-      <Route component={Products} path='/dashboard/products/:type' />
-
-      {/*       <Route path='/dashboard/products/:type'>
-        <React.Suspense fallback={<PageLoader />}>
-          <Products />
-        </React.Suspense>
-      </Route> */}
-
-      {/*       <Route component={Products} path='/dashboard/products/:type' />
-      <Route component={NewProduct} path='/dashboard/new/product' />
-
-      <Route path='/dashboard/details/product/:productId'>
-        <React.Suspense fallback={<PageLoader />}>
-          <ProductDetails />
-        </React.Suspense>
-      </Route>
-
-      <Route component={Orders} path='/dashboard/orders' exact />
-      <Route path='/dashboard/orders/:orderNo'>
-        <React.Suspense fallback={<PageLoader />}>
-          <OrderDetails />
-        </React.Suspense>
-      </Route> */}
-    </Switch>
+    <Suspense fallback={<PageLoader />}>
+      <Switch>
+        <UnauthenticatedRoutes />
+      </Switch>
+    </Suspense>
   );
 };
 
