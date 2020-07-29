@@ -17,15 +17,15 @@ const AuthProvider = ({ children }) => {
     userInfo: userInfo ? JSON.parse(userInfo) : {},
   });
 
-  const setAuthInfo = ({ token, userInfo, expiresAt }) => {
-    localStorage.setItem("token", token);
-    localStorage.setItem("userInfo", JSON.stringify(userInfo));
-    localStorage.setItem("expiresAt", expiresAt);
+  const setAuthInfo = ({ tokens, user }) => {
+    localStorage.setItem("token", tokens.token);
+    localStorage.setItem("userInfo", JSON.stringify(user));
+    localStorage.setItem("expiresAt", tokens.expires);
 
     setAuthState({
-      token,
-      userInfo,
-      expiresAt,
+      token: tokens.token,
+      userInfo: JSON.stringify(user),
+      expiresAt: tokens.expires,
     });
   };
 
@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const isAdmin = () => {
-    return authState.userInfo.role === "admin";
+    return authState.userInfo.role === "ADMIN";
   };
 
   return (
