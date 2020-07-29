@@ -2,8 +2,6 @@ import React from "react";
 import { CustomInput } from "reactstrap";
 import { useField } from "formik";
 
-import FormInputError from "../FormInputError";
-
 function FormInput({ ariaLabel, id, name, label, value, defaultChecked }) {
   const [field, meta] = useField(name);
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import faker from 'faker/locale/tr';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
