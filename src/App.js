@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import {ToastContainer} from "react-toastify"
 
-import { AuthProvider, AuthContext } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
 import { FetchProvider } from "./context/FetchContext";
 
 import AppLayout from "./layout/default";

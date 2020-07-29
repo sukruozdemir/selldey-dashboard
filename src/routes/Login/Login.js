@@ -1,18 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 import {
   Button,
-  CustomInput,
   EmptyLayout,
   FormError,
   FormGroup,
   FormInput,
   FormSuccess,
-  FormText,
-  Input,
   Label,
   ThemeConsumer,
 } from "../../components";
@@ -41,7 +38,7 @@ const Login = () => {
       const { data } = await axios.post(`/auth/login`, credentials);
 
       authContext.setAuthState(data);
-      setLoginSuccess(data.message);
+      setLoginSuccess("Giriş Başarılı");
       setLoginError(null);
 
       setTimeout(() => {
@@ -50,14 +47,17 @@ const Login = () => {
     } catch (error) {
       setLoginLoading(false);
       const { data } = error.response;
-      setLoginError(data.message);
+      setLoginError(data.message || "Giriş Yapılamadı");
       setLoginSuccess(null);
     }
   };
 
   return (
     <>
-      {redirectOnLogin && <Redirect to='/dashboard' />}
+      {!redirectOnLogin && authContext.isAuthenticated() && (
+        <Redirect to='/dashboard/products/list' />
+      )}
+      {redirectOnLogin && <Redirect to='/dashboard/products/list' />}
       <EmptyLayout>
         <EmptyLayout.Section center>
           {/* START Header */}
@@ -100,7 +100,12 @@ const Login = () => {
                 </FormGroup>
                 <ThemeConsumer>
                   {({ color }) => (
-                    <Button disabled={loginLoading} color={color} block type='submit'>
+                    <Button
+                      disabled={loginLoading}
+                      color={color}
+                      block
+                      type='submit'
+                    >
                       Giriş Yap
                     </Button>
                   )}

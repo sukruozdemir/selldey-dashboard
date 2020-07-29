@@ -1,11 +1,9 @@
-import React, { Suspense } from "react";
+import React, { useContext } from "react";
 import { Route, Switch, Redirect } from "react-router";
 
 // ----------- Page Imports ---------------
 import Login from "./Login";
 import Error404 from "./Error404";
-
-// ----------- Async Page Imports ---------------
 
 import NavbarOnly from "./Layouts/NavbarOnly";
 import SidebarWithNavbar from "./Layouts/SidebarWithNavbar";
@@ -19,6 +17,11 @@ import { SidebarASidebar } from "./../layout/components/SidebarASidebar";
 
 import { PageLoader } from "../components";
 
+import { AuthContext } from "../context/AuthContext";
+
+// ----------- Async Page Imports ---------------
+const Products = React.lazy(() => import("./Products/Products"));
+
 const UnauthenticatedRoutes = () => (
   <Switch>
     <Redirect from='/' to='login' exact />
@@ -27,18 +30,12 @@ const UnauthenticatedRoutes = () => (
   </Switch>
 );
 
-/* const AuthenticatedRoute = ({ children, ...rest }) => {
+const AuthenticatedRoute = ({ children, ...rest }) => {
   const auth = useContext(AuthContext);
   return (
     <Route
       {...rest}
-      render={() =>
-        auth.isAuthenticated() ? (
-          <AppShell>{children}</AppShell>
-        ) : (
-          <Redirect to='/' />
-        )
-      }
+      render={() => (auth.isAuthenticated() ? children : <Redirect to='/' />)}
     ></Route>
   );
 };
@@ -50,22 +47,33 @@ const AdminRoute = ({ children, ...rest }) => {
       {...rest}
       render={() =>
         auth.isAuthenticated() && auth.isAdmin() ? (
-          <AppShell>{children}</AppShell>
+          children
         ) : (
           <Redirect to='/' />
         )
       }
     ></Route>
   );
-}; */
+};
 
 export const RoutedContent = () => {
   return (
-    <Suspense fallback={<PageLoader />}>
+    <React.Suspense fallback={<PageLoader />}>
       <Switch>
+        {/* Products */}
+        <AuthenticatedRoute path='/dashboard/products/:type'>
+          <Products />
+        </AuthenticatedRoute>
+
+        {/* Orders */}
+        <AuthenticatedRoute path='/dashboard/orders'>
+          <Products />
+        </AuthenticatedRoute>
+
+        {/* Public Routes */}
         <UnauthenticatedRoutes />
       </Switch>
-    </Suspense>
+    </React.Suspense>
   );
 };
 
