@@ -12,13 +12,42 @@ import { ProjectsSmHeader } from "./../../components/Projects/ProjectsSmHeader";
 
 import { FetchContext } from "../../../context/FetchContext";
 import useProducts from "../../../hooks/useProducts";
+import useQuery from "../../../hooks/useQuery";
 
 const Products = () => {
   const fetchContext = useContext(FetchContext);
   const history = useHistory();
   const match = useRouteMatch();
+  const query = useQuery();
 
-  const { data } = useProducts(fetchContext.authAxios);
+  // Go to page1
+  const goToPage1 = () => {
+    match.params.type === "list"
+      ? history.push("/dashboard/products/list?page=1")
+      : history.push("/dashboard/products/grid?page=1");
+  };
+
+  // Get "page" query param
+  const page = query.get("page");
+
+  // If "page" query params can't found go to page1
+  !page && goToPage1();
+
+  // Pagination page change handler
+  const handlePageChange = (pageIndex) => {
+    match.params.type === "list"
+      ? history.push(`/dashboard/products/list?page=${pageIndex.selected + 1}`)
+      : history.push(`/dashboard/products/grid?page=${pageIndex.selected + 1}`);
+  };
+
+  // Fetch products
+  const { data } = useProducts(fetchContext.authAxios, {
+    limit: match.params.type === "list" ? "10" : "9",
+    page: page,
+  });
+
+  // Check page is bigger than data total pages?
+  data && data.totalPages && Number(page) > data.totalPages && goToPage1();
 
   return (
     <>
@@ -35,8 +64,8 @@ const Products = () => {
                   ? "Ürün Listesi"
                   : "Ürün Grid Liste"
               }
-              linkList='/dashboard/products/list'
-              linkGrid='/dashboard/products/grid'
+              linkList={`/dashboard/products/list?page=${page}`}
+              linkGrid={`/dashboard/products/grid?page=${page}`}
               onNewButtonClick={() => {
                 history.push("/dashboard/new/product");
               }}
@@ -44,9 +73,17 @@ const Products = () => {
 
             {data ? (
               match.params.type === "list" ? (
-                <ProductsList data={data.results} />
+                <ProductsList
+                  data={data}
+                  page={page}
+                  handlePageChange={handlePageChange}
+                />
               ) : (
-                <ProductsGrid />
+                <ProductsGrid
+                  data={data}
+                  page={page}
+                  handlePageChange={handlePageChange}
+                />
               )
             ) : (
               <PageLoader />

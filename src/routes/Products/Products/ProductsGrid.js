@@ -1,27 +1,26 @@
 import React from "react";
 
+import Pagination from "../../components/Pagination";
 import { CardColumns } from "./../../../components";
 import { ProductsCardGrid } from "./../../components/Products/ProductsCardGrid";
-import { Paginations } from "./../../components/Paginations";
 
-const ProductsGrid = () => (
+const ProductsGrid = ({ data, page, handlePageChange }) => (
   <React.Fragment>
     <CardColumns>
-      <ProductsCardGrid />
-      <ProductsCardGrid id='2' />
-      <ProductsCardGrid id='3' />
-      <ProductsCardGrid id='4' />
-      <ProductsCardGrid id='5' />
-      <ProductsCardGrid id='6' />
-      <ProductsCardGrid id='7' />
-      <ProductsCardGrid id='8' />
-      <ProductsCardGrid id='9' />
-      <ProductsCardGrid id='10' />
-      <ProductsCardGrid id='11' />
-      <ProductsCardGrid id='12' />
+      {data.results.map((productItem, index) => {
+        return <ProductsCardGrid key={index} id={index} {...productItem} />;
+      })}
     </CardColumns>
     <div className='d-flex justify-content-center'>
-      <Paginations />
+      <Pagination
+        pageCount={data.totalPages}
+        forcePage={Number(page) - 1}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        previousLabel=''
+        nextLabel=''
+        onPageChange={handlePageChange}
+      />
     </div>
   </React.Fragment>
 );

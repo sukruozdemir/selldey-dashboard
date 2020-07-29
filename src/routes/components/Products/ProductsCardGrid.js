@@ -1,6 +1,7 @@
 import React from "react";
-import faker from "faker/locale/tr";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+
 import {
   ButtonGroup,
   Card,
@@ -11,9 +12,9 @@ import {
   UncontrolledButtonDropdown,
 } from "./../../../components";
 
-import { Profile } from "./../Profile";
+import { ProductCardDetail } from "./ProductCardDetail";
 
-const ProductsCardGrid = (props) => (
+const ProductsCardGrid = ({ id, title, description, site, price, active }) => (
   <React.Fragment>
     {/* START Card */}
     <Card>
@@ -26,8 +27,10 @@ const ProductsCardGrid = (props) => (
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <i className='fa fa-fw fa-pencil mr-2'></i>
-                  Düzenle
+                  <Link to={`/dashboard/details/product/${id}`}>
+                    <i className='fa fa-fw fa-folder-open mr-2'></i>
+                    Görüntüle
+                  </Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
@@ -38,11 +41,10 @@ const ProductsCardGrid = (props) => (
             </UncontrolledButtonDropdown>
           </ButtonGroup>
         </div>
-        <Profile
-          title={faker.commerce.productName()}
-          subTitle={faker.internet.url()}
-          descrpition={`${faker.commerce.price()} ₺`}
-          descriptionIcon='fa-money'
+        <ProductCardDetail
+          productTitle={title}
+          productSiteUrl={site}
+          active={active}
         />
       </CardBody>
     </Card>

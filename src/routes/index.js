@@ -21,6 +21,7 @@ import { AuthContext } from "../context/AuthContext";
 
 // ----------- Async Page Imports ---------------
 const Products = React.lazy(() => import("./Products/Products"));
+const ProductDetails = React.lazy(() => import('./Products/ProductDetails'));
 
 const UnauthenticatedRoutes = () => (
   <Switch>
@@ -63,6 +64,9 @@ export const RoutedContent = () => {
         {/* Products */}
         <AuthenticatedRoute path='/dashboard/products/:type'>
           <Products />
+        </AuthenticatedRoute>
+        <AuthenticatedRoute path='/dashboard/details/product/:productId'>
+          <ProductDetails />
         </AuthenticatedRoute>
 
         {/* Orders */}

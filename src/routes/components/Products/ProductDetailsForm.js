@@ -50,8 +50,8 @@ function ProductDetailsForm({ id, title, description, site, active }) {
 
             mutate(`/products/${id}`, { ...values });
             setTimeout(() => {
-              history.push("/dashboard/products/list");
-            }, 1000);
+              history.goBack();
+            }, 750);
           })
           .catch((error) => {
             setSuccessMessage(null);
