@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
 import { Container, Row, Col, PageLoader } from "./../../../components";
 import { HeaderMain } from "../../components/HeaderMain";
@@ -14,9 +13,10 @@ import { ProjectsSmHeader } from "./../../components/Projects/ProjectsSmHeader";
 import { FetchContext } from "../../../context/FetchContext";
 import useProducts from "../../../hooks/useProducts";
 
-const Products = (props) => {
+const Products = () => {
   const fetchContext = useContext(FetchContext);
   const history = useHistory();
+  const match = useRouteMatch();
 
   const { data } = useProducts(fetchContext.authAxios);
 
@@ -31,7 +31,7 @@ const Products = (props) => {
           <Col lg={9}>
             <ProjectsSmHeader
               subTitle={
-                props.match.params.type === "list"
+                match.params.type === "list"
                   ? "Ürün Listesi"
                   : "Ürün Grid Liste"
               }
@@ -43,7 +43,7 @@ const Products = (props) => {
             />
 
             {data ? (
-              props.match.params.type === "list" ? (
+              match.params.type === "list" ? (
                 <ProductsList data={data.results} />
               ) : (
                 <ProductsGrid />
@@ -56,10 +56,6 @@ const Products = (props) => {
       </Container>
     </>
   );
-};
-
-Products.propTypes = {
-  match: PropTypes.object.isRequired,
 };
 
 export default Products;
