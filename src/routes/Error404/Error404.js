@@ -1,39 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import {
-  Form,
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroup,
-  Button,
-  Label,
-  EmptyLayout,
-  ThemeConsumer,
-} from "../../components";
-
-import { HeaderAuth } from "../components/HeaderAuth";
+import { Button, EmptyLayout } from "../../components";
 import { FooterAuth } from "../components/FooterAuth";
+import { HeaderAuth } from "../components/HeaderAuth";
+import { useHistory } from "react-router-dom";
 
-const Error404 = () => (
-  <EmptyLayout>
-    <EmptyLayout.Section center>
-      {/* START Header */}
-      <HeaderAuth title='404 Sayfa Bulunamadı' />
-      {/* END Header */}
+const Error404 = () => {
+  const history = useHistory();
 
-      {/* START Bottom Links */}
-      <div className='d-flex justify-content-center mb-5'>
-        <Link className="btn btn-primary" to='/login'>Giriş Yap</Link>
-      </div>
-      {/* END Bottom Links */}
+  return (
+    <EmptyLayout>
+      <EmptyLayout.Section center>
+        {/* START Header */}
+        <HeaderAuth title='404 Sayfa Bulunamadı' />
+        {/* END Header */}
 
-      {/* START Footer */}
-      <FooterAuth />
-      {/* END Footer */}
-    </EmptyLayout.Section>
-  </EmptyLayout>
-);
+        {/* START Bottom Links */}
+        <div className='d-flex justify-content-center mb-5'>
+          <Button color='primary' onClick={history.goBack}>
+            Geri Dön
+          </Button>
+        </div>
+        {/* END Bottom Links */}
+
+        {/* START Footer */}
+        <FooterAuth />
+        {/* END Footer */}
+      </EmptyLayout.Section>
+    </EmptyLayout>
+  );
+};
 
 export default Error404;
